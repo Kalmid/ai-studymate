@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 
 type NavItem = {
   label: string;
@@ -165,7 +165,7 @@ function TaskForm({
   formState: TaskFormState;
   editingId: string | null;
   onChange: (field: keyof TaskFormState, value: string) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onCancel: () => void;
   formError: string | null;
 }) {
@@ -262,7 +262,7 @@ export default function Dashboard() {
     setFormError(null);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedTitle = formState.title.trim();
@@ -416,7 +416,7 @@ export default function Dashboard() {
               </div>
 
               <ul className="space-y-3">
-                {initialStudyTasks.slice(0, 4).map((task) => (
+                {tasks.slice(0, 4).map((task) => (
                   <StudyPlanItem key={task.id} item={task} />
                 ))}
               </ul>
